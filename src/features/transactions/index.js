@@ -12,7 +12,7 @@ const TopSideButtons = ({removeFilter, applyFilter, applySearch}) => {
 
     const [filterParam, setFilterParam] = useState("")
     const [searchText, setSearchText] = useState("")
-    const locationFilters = ["Paris", "London", "Canada", "Peru", "Tokyo"]
+    const locationFilters = ["India", "Canada", "Paris", "Peru", "Tokyo"]
 
     const showFiltersAndApply = (params) => {
         applyFilter(params)
@@ -84,9 +84,9 @@ function Transactions(){
                 <table className="table w-full">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email Id</th>
-                        <th>Location</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Transaction Type</th>
                         <th>Amount</th>
                         <th>Transaction Date</th>
                     </tr>

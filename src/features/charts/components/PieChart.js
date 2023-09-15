@@ -26,7 +26,7 @@ import {
           },
         };
         
-        const labels = ['India', 'Middle East', 'Europe', 'US', 'Latin America', 'Asia(non-india)'];
+        const labels = ['Kisumu', 'Nairobi', 'Nyeri', 'Machakos', 'Meru', 'Bungoma','Kisii', 'Kakamega', 'Kiambu','Nakuru'];
         
         const data = {
           labels,
@@ -56,7 +56,7 @@ import {
         };
   
       return(
-          <TitleCard title={"Orders by country"}>
+          <TitleCard title={"Orders by county"}>
                   <Pie options={options} data={data} />
           </TitleCard>
       )

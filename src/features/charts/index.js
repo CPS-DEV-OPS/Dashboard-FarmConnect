@@ -27,13 +27,13 @@ function Charts(){
         <Datepicker 
                 containerClassName="w-72" 
                 value={dateValue} 
-                theme={"light"}
+                theme={"dark"}
                 inputClassName="input input-bordered w-72" 
                 popoverDirection={"down"}
                 toggleClassName="invisible"
                 onChange={handleDatePickerValueChange} 
                 showShortcuts={true} 
-                primaryColor={"white"} 
+                primaryColor={"green"} 
             /> 
         {/** ---------------------- Different charts ------------------------- */}
             <div className="grid lg:grid-cols-2 mt-0 grid-cols-1 gap-6">
@@ -47,10 +47,10 @@ function Charts(){
                 <PieChart />
             </div>
 
-            <div className="grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6">
+            {/* <div className="grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6">
                 <ScatterChart />
                 <LineChart />
-            </div>
+            </div> */}
         </>
     )
 }

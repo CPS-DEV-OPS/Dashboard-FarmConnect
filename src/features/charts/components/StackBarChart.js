@@ -26,23 +26,23 @@ import {
             },
         };
         
-        const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+        const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
         
         const data = {
           labels,
           datasets: [
             {
-              label: 'Store 1',
+              label: 'Animal Product',
               data: labels.map(() => { return Math.random() * 1000 + 500 }),
               backgroundColor: 'rgba(255, 99, 132, 1)',
             },
             {
-              label: 'Store 2',
+              label: 'Crop',
               data: labels.map(() => { return Math.random() * 1000 + 500 }),
               backgroundColor: 'rgba(53, 162, 235, 1)',
             },
             {
-                label: 'Store 3',
+                label: 'Animals',
                 data: labels.map(() => { return Math.random() * 1000 + 500 }),
                 backgroundColor: 'rgba(235, 162, 235, 1)',
               },

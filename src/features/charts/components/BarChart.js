@@ -23,18 +23,23 @@ function BarChart(){
         },
       };
       
-      const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+      const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
       
       const data = {
         labels,
         datasets: [
           {
-            label: 'Store 1',
+            label: 'Crops',
             data: labels.map(() => { return Math.random() * 1000 + 500 }),
             backgroundColor: 'rgba(255, 99, 132, 1)',
           },
           {
-            label: 'Store 2',
+            label: 'Animals',
+            data: labels.map(() => { return Math.random() * 1000 + 500 }),
+            backgroundColor: 'rgba(53, 162, 235, 1)',
+          },
+          {
+            label: 'Animal Products',
             data: labels.map(() => { return Math.random() * 1000 + 500 }),
             backgroundColor: 'rgba(53, 162, 235, 1)',
           },
@@ -42,7 +47,7 @@ function BarChart(){
       };
 
     return(
-      <TitleCard title={"No of Orders"} topMargin="mt-2">
+      <TitleCard title={"No of Products Ordered"} topMargin="mt-2">
             <Bar options={options} data={data} />
       </TitleCard>
 
