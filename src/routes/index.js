@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: '/welcome', // the url
-    component: Welcome, // view rendered
+    component: Dashboard, // view rendered
   },
   {
     path: '/leads',
