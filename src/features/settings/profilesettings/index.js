@@ -27,11 +27,11 @@ function ProfileSettings(){
             <TitleCard title="Profile Settings" topMargin="mt-2">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <InputText labelTitle="Name" defaultValue="Alex" updateFormValue={updateFormValue}/>
-                    <InputText labelTitle="Email Id" defaultValue="alex@dashwind.com" updateFormValue={updateFormValue}/>
-                    <InputText labelTitle="Title" defaultValue="UI/UX Designer" updateFormValue={updateFormValue}/>
-                    <InputText labelTitle="Place" defaultValue="California" updateFormValue={updateFormValue}/>
-                    <TextAreaInput labelTitle="About" defaultValue="Doing what I love, part time traveller" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Name" defaultValue="Name" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Email Id" defaultValue="kendisharonm@gmail.com" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Title" defaultValue="Farmerr" updateFormValue={updateFormValue}/>
+                    <InputText labelTitle="Place" defaultValue="Location" updateFormValue={updateFormValue}/>
+                    <TextAreaInput labelTitle="About" defaultValue="tell us what you do" updateFormValue={updateFormValue}/>
                 </div>
                 <div className="divider" ></div>
 
