@@ -17,26 +17,26 @@ function GettingStartedContent(){
 
               {/* Introduction */}
               <h2 className="" id="getstarted1">Introduction</h2>
-              <p>A free dashboard template using <span className='font-bold'>Daisy UI</span> and react js. With the help of Dasisy UI, it comes with <span className='font-bold'>fully customizable and themable CSS</span> and power of Tailwind CSS utility classes. We have also added <span className='font-bold'>redux toolkit</span>  and configured it for API calls and state management.</p> 
-              <p>User authentication has been implemented using JWT token method (ofcourse you need backend API for generating and verifying token). This template can be used to start your next SaaS project or build new internal tools in your company.</p>
+              <p>A farmer dashboard  UI that  comes with <span className='font-bold'>fully customizable and interactive platform</span> and easy customizable and configured it for API calls and state management.</p> 
+              <p>User authentication has been implemented using JWT token method (ofcourse you need backend API for generating and verifying token). This platform will be used by farmer to upload product and view things like settings, products, transactions and analytics.</p>
               <h4> Core libraries used - </h4>
               <ul>
                   <li><a href="https://reactjs.org/" target="_blank">React JS v18.2.0</a></li>
                   <li><a href="https://reactrouter.com/en/main" target="_blank">React Router v6.4.3</a></li>
                   <li><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS v3.2.4</a></li>
-                  <li><a href="https://daisyui.com/" target="_blank">Daisy UI v2.41.0</a></li>
+                  <li><a href="https://FarmConnectui.com/" target="_blank">FarmConnect UI v2.41.0</a></li>
                   <li><a href="https://heroicons.com/" target="_blank">HeroIcons v2.0.13</a></li>
                   <li><a href="https://redux-toolkit.js.org/" target="_blank">Redux toolkit v1.9.0</a></li>
                   <li><a href="https://react-chartjs-2.js.org/" target="_blank">React ChartJS 2 v5.0.1</a></li>
               </ul>
               <h4>Major features - </h4>
-              <p className=''>Almost all major UI components are available in Daisy UI library. Apart from this logic has been added for following - </p>
+              <p className=''>Almost all major UI components are available in FarmConnect UI library. Apart from this logic has been added for following - </p>
               <ul>
                   <li> <span className='font-bold'>Light/dark</span> mode toggle</li>
                   <li> Token based user authentication</li>
                   <li> <span className='font-bold'>Submenu support</span> in sidebar</li>
                   <li> Store management using <span className='font-bold'>redux toolkit</span></li>
-                  <li> <span className='font-bold'>Daisy UI</span> components</li>
+                  <li> <span className='font-bold'>FarmConnect UI</span> components</li>
                   <li> <span className='font-bold'>Right and left sidebar</span>, Universal loader, notifications and other components</li>
                   <li> React <span className='font-bold'>chart js 2</span> examples</li>
               </ul>
@@ -49,7 +49,7 @@ function GettingStartedContent(){
               <h2 id="getstarted2">How to use?</h2>
                 <p>
                     Just clone the repo from github and then run following command (Make sure you have node js installed )<br/>
-                    <a href="https://github.com/srobbin01/daisyui-admin-dashboard-template" className='text-sm text-blue-500' target="_blank">Repo Link</a>
+                    <a href="https://github.com/srobbin01/FarmConnectui-admin-dashboard-template" className='text-sm text-blue-500' target="_blank">Repo Link</a>
                     <br />
                     <code> npm install </code><br />
                     <code>npm start</code>
@@ -59,15 +59,15 @@ function GettingStartedContent(){
               {/* Tailwind CSS*/}
               <h2 id="getstarted3">Tailwind CSS</h2>
                 <p>
-                Tailwind CSS is a utility-first CSS framework with predefined classes that you can use to build and design the UI directly in the JSX. We have also included Daisy UI Component, that is based on tailwind CSS.
+                Tailwind CSS is a utility-first CSS framework with predefined classes that you can use to build and design the UI directly in the JSX. We have also included FarmConnect UI Component, that is based on tailwind CSS.
                 </p>
 
-              {/* Daisy UI */}
-              <h2 id="getstarted4">Daisy UI</h2>
+              {/* FarmConnect UI */}
+              <h2 id="getstarted4">FarmConnect UI</h2>
 
-              <p><a href="https://daisyui.com/" target="_blank" className='text-xl btn-link'>Daisy UI</a>, a popular free and opensource tailwind component library has been used for this template. It has a rich collection of components, layouts and is fully customizable and themeable.</p>
+              <p><a href="https://FarmConnectui.com/" target="_blank" className='text-xl btn-link'>FarmConnect UI</a>, a popular free and opensource tailwind component library has been used for this template. It has a rich collection of components, layouts and is fully customizable and themeable.</p>
               
-              <p>Apart from this it also helps in making HTML code more cleaner as we don't have to include all utility classes of tailwind to make the UI. Check components <a href="https://daisyui.com/components/button/" target="_blank" className='btn-link'>documentation here</a>. For Ex- </p>
+              <p>Apart from this it also helps in making HTML code more cleaner as we don't have to include all utility classes of tailwind to make the UI. Check components <a href="https://FarmConnectui.com/components/button/" target="_blank" className='btn-link'>documentation here</a>. For Ex- </p>
 
               <div className='text-center'>
                 <h2 className='text-xl font-bold mb-0.5'>Creating a button</h2>
@@ -85,7 +85,7 @@ function GettingStartedContent(){
                   <div className="divider"></div> 
 
                   <div className='grid w-full flex-grow'>
-                      <p className='text-center font-semibold'>using daisyUI component classes</p>
+                      <p className='text-center font-semibold'>using FarmConnectUI component classes</p>
                         <div className="mockup-code mb-4">
                           <pre className='my-0 py-0'><code>{'<a className="btn btn-primary">\nButton</a>'}</code></pre>
                         </div> 
