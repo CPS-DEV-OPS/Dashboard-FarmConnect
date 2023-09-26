@@ -45,9 +45,9 @@ const routes = [
     name: 'Analytics', // name that appear in Sidebar
   },
   {
-    path: '/app/integration', // url
+    path: '/app/product', // url
     icon: <BoltIcon className={iconClasses}/>, // icon component
-    name: 'Integration', // name that appear in Sidebar
+    name: 'Products', // name that appear in Sidebar
   },
   {
     path: '/app/calendar', // url

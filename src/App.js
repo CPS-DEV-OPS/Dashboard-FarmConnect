@@ -24,7 +24,7 @@ const token = checkAuth()
 function App() {
 
   useEffect(() => {
-    // 👆 daisy UI themes initialization
+    // 👆 farmConnect themes initialization
     themeChange(false)
   }, [])
 
