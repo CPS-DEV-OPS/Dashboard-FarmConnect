@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import LandingIntro from "./LandingIntro";
 import ErrorText from "../../components/Typography/ErrorText";
 import InputText from "../../components/Input/InputText";
+import { GoogleLogin } from '@react-oauth/google';
+
 function Login() {
   const INITIAL_LOGIN_OBJ = {
     password: "",
@@ -30,6 +32,15 @@ function Login() {
     setErrorMessage("");
     setLoginObj({ ...loginObj, [updateType]: value });
   };
+
+  const onSuccess = (response) => {
+    // Do something with the user's Google profile information
+  };
+
+  const onFailure = (error) => {
+    // Handle the error
+  };
+
   return (
     <div className="min-h-screen bg-base-200 flex items-center">
       <div className="card mx-auto w-full max-w-5xl  shadow-xl">
@@ -91,7 +102,7 @@ function Login() {
                 </p>
               </div>
               <div className="flex justify-center space-x-4 mt-4">
-              <button
+              {/* <button
                 type="submit"
                 className=" btn bg-transparent hover:bg-green-50 rounded-full"
               >
@@ -120,7 +131,13 @@ function Login() {
                     d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
                   ></path>
                 </svg>
-              </button>
+               
+              </button> */}
+             <GoogleLogin
+        buttonText="Login with Google"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+      />
 
               <button
                 type="submit"
