@@ -1,29 +1,43 @@
 import React, { useState, useEffect } from "react";
+import CurrencyFormat from "react-currency-format";
+
 
 
 function Product() {
   // Sample data for existing products
   const initialProducts = JSON.parse(localStorage.getItem("products")) || [];
 
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Tomatoes",
-      quantity: 20,
-      imageUrl: "",
-      description: "Fresh and juicy tomatoes",
-      type: "Crop",
-    },
-    {
-      id: 2,
-      name: "Apples",
-      quantity: 15,
-      imageUrl: "",
-      description: "Crispy apples",
-      type: "Crop",
-    },
-    // Add more sample products here
-  ]);
+  const [products, setProducts] = useState([]);
+
+useEffect(() => {
+  const productsFromStorage = JSON.parse(localStorage.getItem("products"));
+  if (productsFromStorage) {
+    setProducts(productsFromStorage);
+  } else {
+    // If there's no data in localStorage, set the initial sample data
+    setProducts([
+      {
+        id: 1,
+        name: "Tomatoes",
+        quantity: 20,
+        imageUrl: "",
+        description: "Fresh and juicy tomatoes",
+        type: "Crop",
+        quantityType: "Kgs",
+      },
+      {
+        id: 2,
+        name: "Apples",
+        quantity: 15,
+        imageUrl: "",
+        description: "Crispy apples",
+        type: "Crop",
+        quantityType: "Kgs",
+      },
+      // Add more sample products here
+    ]);
+  }
+}, []);
 
   // State for new product form
 
@@ -32,7 +46,9 @@ function Product() {
     quantity: "",
     imageUrl: "",
     description: "",
+    price: "",
     type: "Crop", // Default product type
+    quantityType:"Kgs",
   });
 
   // State for editing a product
@@ -79,7 +95,9 @@ function Product() {
         quantity: "",
         imageUrl: "",
         description: "",
+        price: "",
         type: "Crop", // Reset to default product type
+        quantityType: "Kgs",
       });
     }
   };
@@ -93,7 +111,7 @@ function Product() {
   // Function to save edited product
   const handleSaveProduct = () => {
     
-    if (newProduct.name && newProduct.quantity) {
+    if (newProduct.name &&   newProduct.quantity) {
       const updatedProducts = products.map((product) =>
         product.id === newProduct.id ? newProduct : product
       );
@@ -104,7 +122,9 @@ function Product() {
         quantity: "",
         imageUrl: "",
         description: "",
+        price: "",
         type: "Crop", // Reset to default product type
+        quantityType: "Kgs",
       });
       // New code:
       localStorage.setItem("products", JSON.stringify(updatedProducts));
@@ -118,6 +138,8 @@ function Product() {
     //new code
     localStorage.setItem('products', JSON.stringify(updatedProducts));
   };
+  //new
+  const columnsPerRow = 3;
 
   return (
     <div className="p-4">
@@ -140,10 +162,42 @@ function Product() {
         </div>
         <div className="mb-4">
           <input
+
             type="number"
             name="quantity"
             placeholder="Quantity"
             value={newProduct.quantity}
+            onChange={handleInputChange}
+            cl
+            assName="w-full px-3 py-2 border rounded-lg"
+          />
+          </div>
+        {/* new */}
+        <div className="mb-4">
+          <label htmlFor="type" className="block text-gray-700 font-semibold">
+            Quantity Type
+          </label>
+          <select
+            name="quantityType"
+            id="quantityType"
+            value={newProduct.quantityType}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-lg"
+          >
+            <option value="Bags">Bags</option>
+            <option value="Kgs">Kgs</option>
+            <option value="litres">litres</option>
+          </select>
+
+        </div>
+
+          </div>
+          <div className="mb-4">
+          <input
+            type="number"
+            name="price"
+            placeholder="Price in ksh"    
+            value={newProduct.price}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded-lg"
           />
@@ -180,7 +234,8 @@ function Product() {
             <option value="Animal">Animal</option>
             <option value="Animal Product">Animal Product</option>
           </select>
-        </div>
+
+        
         {editProduct ? (
           <button
             onClick={handleSaveProduct}
@@ -199,13 +254,37 @@ function Product() {
       </div>
 
       {/* Display existing products in a grid with constant image size */}
-      <div className="mb-6 grid grid-cols-2 gap-4">
+      <div className="mb-6 grid grid-cols-3 gap-2">
         {products.map((product) => (
           <div key={product.id} className="border p-4">
+            {product.imageUrl && (
+              <div className="mt-2">
+                <div style={{ maxWidth: '200px', maxHeight: '200px', overflow: 'hidden' }}>
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className="max-w-full h-auto"
+                  
+                />
+                </div>
             <h2 className="text-lg font-semibold">{product.name}</h2>
+            
             <p>Quantity: {product.quantity}</p>
             <p>Type: {product.type}</p>
             <p>Description: {product.description}</p>
+            <p>QuantityType: {product.quantityType}</p>
+            <div>
+                  <CurrencyFormat
+                    value={product.price}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    suffix={" KES"}
+                    renderText={(formattedValue) => (
+                      <p>Price: {formattedValue}</p>
+                    )}
+                  />
+                  </div>
+            {/* <p>Price: {product.price}</p> */}
             <div>
               <button
                 onClick={() => handleEditProduct(product)}
@@ -220,13 +299,6 @@ function Product() {
                 Delete
               </button>
             </div>
-            {product.imageUrl && (
-              <div className="mt-2">
-                <img
-                  src={product.imageUrl}
-                  alt={product.name}
-                  className="max-w-full h-auto"
-                />
               </div>
             )}
           </div>
