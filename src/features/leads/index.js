@@ -50,18 +50,19 @@ function Leads(){
     return(
         <>
             
-            <TitleCard title="Current Leads" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
+            <TitleCard title="Deliveries Tracking" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
 
                 {/* Leads List in table format loaded from slice after api call */}
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email Id</th>
-                        <th>Created At</th>
+                        <th>Buyer</th>
+                        <th>Product</th>
+                        {/* <th>Product Cost</th> */}
+                        <th>Departure Date</th>
                         <th>Status</th>
-                        <th>Assigned To</th>
+                        <th>Transporter</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -87,7 +88,7 @@ function Leads(){
                                     <td>{moment(new Date()).add(-5*(k+2), 'days').format("DD MMM YY")}</td>
                                     <td>{getDummyStatus(k)}</td>
                                     <td>{l.last_name}</td>
-                                    <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentLead(k)}><TrashIcon className="w-5"/></button></td>
+                                    {/* <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentLead(k)}><TrashIcon className="w-5"/></button></td> */}
                                     </tr>
                                 )
                             })

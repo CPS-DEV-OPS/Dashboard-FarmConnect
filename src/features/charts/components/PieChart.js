@@ -26,7 +26,7 @@ import {
           },
         };
         
-        const labels = ['Kisumu', 'Nairobi', 'Nyeri', 'Machakos', 'Meru', 'Bungoma','Kisii', 'Kakamega', 'Kiambu','Nakuru'];
+        const labels = ['Kisumu', 'Nairobi', 'Nyeri', 'Machakos', 'Meru', 'Bungoma','Kisii', 'Kakamega', 'Kiambu','Naks'];
         
         const data = {
           labels,
