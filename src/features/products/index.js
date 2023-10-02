@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CurrencyFormat from "react-currency-format";
+//import CurrencyFormat from "react-currency-format";
 
 
 
@@ -273,7 +273,7 @@ useEffect(() => {
             <p>Type: {product.type}</p>
             <p>Description: {product.description}</p>
             <p>QuantityType: {product.quantityType}</p>
-            <div>
+            {/* <div>
                   <CurrencyFormat
                     value={product.price}
                     displayType={"text"}
@@ -283,7 +283,7 @@ useEffect(() => {
                       <p>Price: {formattedValue}</p>
                     )}
                   />
-                  </div>
+                  </div> */}
             {/* <p>Price: {product.price}</p> */}
             <div>
               <button
