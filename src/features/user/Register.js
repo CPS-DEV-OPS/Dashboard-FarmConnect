@@ -1,11 +1,20 @@
+
+
 import {useState, useRef} from 'react'
 import {Link} from 'react-router-dom'
 import LandingIntro from './LandingIntro'
 import ErrorText from  '../../components/Typography/ErrorText'
 import InputText from '../../components/Input/InputText'
 
-function Register(){
+import { useNavigate } from "react-router-dom";
 
+function Register(){
+    
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `additional`; 
+      navigate(path);
+       }
     const INITIAL_REGISTER_OBJ = {
         name : "",
         password : "",
@@ -36,7 +45,8 @@ function Register(){
         setErrorMessage("")
         setRegisterObj({...registerObj, [updateType] : value})
     }
-
+    
+      
     return(
         <div className="min-h-screen bg-base-200 flex items-center">
             <div className="card mx-auto w-full max-w-5xl  shadow-xl">
@@ -44,6 +54,7 @@ function Register(){
                 <div className=''>
                         <LandingIntro />
                 </div>
+                
                 <div className='py-24 px-10'>
                     <h2 className='text-2xl font-semibold mb-2 text-center'>Register</h2>
                     <form onSubmit={(e) => submitForm(e)}>
@@ -57,16 +68,20 @@ function Register(){
                             <InputText defaultValue={registerObj.password} type="password" updateType="password" containerStyle="mt-4" labelTitle="Password" updateFormValue={updateFormValue}/>
 
                         </div>
-
-                        <ErrorText styleClass="mt-8">{errorMessage}</ErrorText>
-                        <button type="submit" className={"btn mt-2 w-full  bg-green-900 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " + (loading ? " loading" : "")}>Register</button>
-
+                       
+              
+                        <ErrorText styleClass="mt-:ring8">{errorMessage}</ErrorText>
+                        <button className="bg-green-900 text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            >
+        <Link to="/additional">Register</Link>
+      </button>
                         <div className='text-center mt-4'>Already have an account? <Link to="/login"><span className="  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">Login</span></Link></div>
                     </form>
-                </div>
+                    </div>
             </div>
             </div>
         </div>
+
     )
 }
 
