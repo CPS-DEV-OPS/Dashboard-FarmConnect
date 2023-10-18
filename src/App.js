@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { themeChange } from 'theme-change'
 import checkAuth from './app/auth';
 import initializeApp from './app/init';
+import Additional from './features/user/additional';
 
 // Importing pages
 const Layout = lazy(() => import('./containers/Layout'))
@@ -37,7 +38,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/documentation" element={<Documentation />} />
-          
+          <Route path="/additional" element={<Additional />} />
           {/* Place new routes over this */}
           <Route path="/app/*" element={<Layout />} />
 

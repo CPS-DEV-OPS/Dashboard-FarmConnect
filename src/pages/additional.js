@@ -4,12 +4,12 @@ import Register from '../features/user/Register'
 import Additional from '../features/user/additional'
 
 
-function ExternalPage(){
+function ExternalPage(){ 
 
 
     return(
         <div className="">
-                <Register/>
+                <Additional/>
         </div>
     )
 }
