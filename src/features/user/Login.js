@@ -48,28 +48,6 @@ function Login() {
         });
         if (response.status === 200) { // Check the response status code
           const data = response.data; 
-          
-    const isDomainAllowed = allowedDomains.includes(emailDomain.toLowerCase());
-  
-    if (!isEmailValid || !isDomainAllowed) {
-      return setErrorMessage("Invalid email format or domain. Please enter a valid email address from Gmail, Yahoo, or Outlook.");
-    }
-  
-    setLoading(true);
-  
-    try {
-      const response = await fetch("https://farmconnectbackend.azurewebsites.net/Auth/Login", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginObj),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-
         // localStorage.setItem("token", data.token);
         setLoading(false);
         navigate('/app/welcome');
