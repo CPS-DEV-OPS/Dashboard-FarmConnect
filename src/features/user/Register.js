@@ -1,17 +1,26 @@
-// import {useState, useRef} from 'react'
-// import {Link} from 'react-router-dom'
-// import LandingIntro from './LandingIntro'
-// import ErrorText from  '../../components/Typography/ErrorText'
-// import InputText from '../../components/Input/InputText'
-// import axios from 'axios'
 
-// function Register(){
 
-//     const INITIAL_REGISTER_OBJ = {
-//       FirstName : "",
-//         password : "",
-//         email : ""
-//     }
+
+import {useState, useRef} from 'react'
+import {Link} from 'react-router-dom'
+import LandingIntro from './LandingIntro'
+import ErrorText from  '../../components/Typography/ErrorText'
+import InputText from '../../components/Input/InputText'
+
+import { useNavigate } from "react-router-dom";
+
+function Register(){
+    
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `additional`; 
+      navigate(path);
+       }
+    const INITIAL_REGISTER_OBJ = {
+        name : "",
+        password : "",
+        emailId : ""
+    }
 
 //     const [loading, setLoading] = useState(false)
 //     const [errorMessage, setErrorMessage] = useState("")
@@ -75,6 +84,7 @@
 //       setRegisterObj({ ...registerObj, [updateType]: value });
 //     };
 
+
 //     return(
 //         <div className="min-h-screen bg-base-200 flex items-center">
 //             <div className="card mx-auto w-full max-w-5xl  shadow-xl">
@@ -114,13 +124,7 @@
 //                         <ErrorText styleClass="mt-8">{errorMessage}</ErrorText>
 //                         <button type="submit" className={"btn mt-2 w-full  bg-green-900 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 " + (loading ? " loading" : "")}>Register</button>
 
-//                         <div className='text-center mt-4'>Already have an account? <Link to="/login"><span className="  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">Login</span></Link></div>
-//                     </form>
-//                 </div>
-//             </div>
-//             </div>
-//         </div>
-//     )
-// }
+   
 
-// export default Register
+export default Register
+
