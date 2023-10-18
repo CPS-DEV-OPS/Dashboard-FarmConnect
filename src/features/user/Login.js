@@ -1,48 +1,54 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate   } from "react-router-dom";
 import LandingIntro from "./LandingIntro";
 import ErrorText from "../../components/Typography/ErrorText";
 import InputText from "../../components/Input/InputText";
 
-// import axios from "axios"; // Import Axios
-
-
-// ...
-
-
+import axios from 'axios'; // Import Axios
 
 function Login() {
   const INITIAL_LOGIN_OBJ = {
     password: "",
-    email: "",
+    email: ""
   };
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loginObj, setLoginObj] = useState(INITIAL_LOGIN_OBJ);
-  const [authenticated, setAuthenticated] = useState(false);
-  
+  const navigate = useNavigate();
 
-  // const token = localStorage.getItem("token");
 
   const submitForm = async (e) => {
     e.preventDefault();
     setErrorMessage(""); // Clear any previous error messages
-  
+
     // Password complexity validation
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     const isPasswordValid = passwordRegex.test(loginObj.password);
-  
-    if (!isPasswordValid) {
-      return setErrorMessage("Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number.");
-    }
-  
+
     // Email format validation
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const isEmailValid = emailRegex.test(loginObj.email);
-  
-    // Add domain validation
+
+    // Check if the email domain is allowed
     const allowedDomains = ['gmail.com', 'yahoo.com', 'outlook.com'];
     const emailDomain = loginObj.email.split('@')[1];
+
+    if (!isPasswordValid) {
+      setErrorMessage("Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number.");
+    } else if (!isEmailValid) {
+      setErrorMessage("Invalid email format. Please enter a valid email address.");
+    } else if (!allowedDomains.includes(emailDomain.toLowerCase())) {
+      setErrorMessage("Invalid email domain. Please use an email address from Gmail, Yahoo, or Outlook.");
+    } else {
+      setLoading(true);
+      try {
+        const response = await axios.post("https://farmconnectbackend.azurewebsites.net/Auth/Login", {
+          password: loginObj.password,
+          email: loginObj.email,
+        });
+        if (response.status === 200) { // Check the response status code
+          const data = response.data; 
+          
     const isDomainAllowed = allowedDomains.includes(emailDomain.toLowerCase());
   
     if (!isEmailValid || !isDomainAllowed) {
@@ -63,9 +69,10 @@ function Login() {
   
       if (response.ok) {
         const data = await response.json();
+
         // localStorage.setItem("token", data.token);
         setLoading(false);
-        window.location.href = "/app/welcome";
+        navigate('/app/welcome');
       } else {
         // Handle different HTTP status codes appropriately
         if (response.status === 401) {
@@ -80,6 +87,7 @@ function Login() {
       setErrorMessage("An error occurred. Please try again.");
       setLoading(false);
     }
+  }
   };
   
   const updateFormValue = ({ updateType, value }) => {
@@ -97,25 +105,24 @@ function Login() {
           </div>
           <div className="py-24 px-10">
             <h2 className="text-2xl font-semibold mb-2 text-center">Login</h2>
-            <form onSubmit={(e) => submitForm(e)}>
-              <div className="mb-4">
-                <InputText
-                  type="email"
-                  defaultValue={loginObj.email}
-                  updateType="email"
-                  containerStyle="mt-4"
-                  labelTitle="Email"
-                  updateFormValue={updateFormValue}
-                />
-                <InputText
-                  defaultValue={loginObj.password}
-                  type="password"
-                  updateType="password"
-                  containerStyle="mt-4"
-                  labelTitle="Password"
-                  updateFormValue={updateFormValue}
-                />
-              </div>
+            <form onSubmit={submitForm}>
+              <div>
+        <input
+          type="text"
+          placeholder="Email"
+          value={loginObj.email}
+          onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value })}
+        />
+        </div>
+        <div>
+        <input
+          type="password"
+          placeholder="Password"
+          value={loginObj.password}
+          onChange={(e) => setLoginObj({ ...loginObj, password: e.target.value })}
+        />
+        </div>
+        
               <div className="text-right text-primary">
                 <Link to="/forgot-password">
                   <span className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
