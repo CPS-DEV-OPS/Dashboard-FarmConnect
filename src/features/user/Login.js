@@ -54,6 +54,7 @@ function Login() {
     try {
       const response = await fetch("https://farmconnectbackend.azurewebsites.net/Auth/Login", {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
