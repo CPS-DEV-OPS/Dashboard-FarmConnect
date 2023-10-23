@@ -50,7 +50,7 @@ function Login() {
           const data = response.data; 
         // localStorage.setItem("token", data.token);
         setLoading(false);
-        navigate('/app/welcome');
+        navigate('/app/dashboard');
       } else {
         // Handle different HTTP status codes appropriately
         if (response.status === 401) {
