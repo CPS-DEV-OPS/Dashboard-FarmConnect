@@ -5,6 +5,7 @@ import { themeChange } from 'theme-change'
 import checkAuth from './app/auth';
 import initializeApp from './app/init';
 import Additional from './features/user/additional';
+import ResetPassword from './features/user/ResetPassword';
 
 // Importing pages
 const Layout = lazy(() => import('./containers/Layout'))
@@ -36,6 +37,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element= {<ResetPassword />}/>
           <Route path="/register" element={<Register />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/additional" element={<Additional />} />

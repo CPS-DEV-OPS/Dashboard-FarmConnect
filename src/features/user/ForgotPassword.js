@@ -1,80 +1,132 @@
-import { object, string } from "zod";
-import { useEffect } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import FormInput from "../components/FormInput";
-import { LoadingButton } from "../components/LoadingButton";
-import { toast } from "react-toastify";
-import useStore from "../store";
-import { authApi } from "../api/authApi";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import LandingIntro from './LandingIntro';
+import ErrorText from '../../components/Typography/ErrorText';
+import InputText from '../../components/Input/InputText';
+import CheckCircleIcon from '@heroicons/react/24/solid/CheckCircleIcon';
+//import ResetPassword from './ResetPassword';
+//import ResetPasswordForm from './ResetPasswordForm';
 
-const forgotPasswordSchema = object({
-  email: string().min(1, "Email is required").email("Invalid email address"),
-});
 
-const ForgotPasswordPage = () => {
-  const store = useStore();
 
-  const methods = useForm({
-    resolver: zodResolver(forgotPasswordSchema),
-  });
 
-  const { reset, handleSubmit, formState } = methods;
-  const { isSubmitSuccessful } = formState;
+function ForgotPassword() {
+    const INITIAL_USER_OBJ = {
+        emailId: "",
+    };
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSubmitSuccessful]);
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [linkSent, setLinkSent] = useState(false);
+    const [userObj, setUserObj] = useState(INITIAL_USER_OBJ);
 
-  const forgotPassword = async (data) => {
-    try {
-      store.setRequestLoading(true);
-      const response = await authApi.post("auth/forgotpassword", data);
-      store.setRequestLoading(false);
-      toast.success(response.data.message, {
-        position: "top-right",
-      });
-    } catch (error) {
-      store.setRequestLoading(false);
-      const resMessage =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      toast.error(resMessage, {
-        position: "top-right",
-      });
-    }
+    const submitForm = (e) => {
+      e.preventDefault();
+      setErrorMessage("");
+  
+      const email = userObj.emailId;
+  
+      if (email.trim() === "") {
+          return setErrorMessage("Email Id is required! (use any value)");
+      } else {
+          setLoading(true);
+  
+          // Make an API request to send the reset link
+          fetch(`https://localhost:7079/api/Account/forgot-password?email=${email}`, {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email }),
+          })
+              .then((response) => response.json())
+              .then((data) => {
+                  setLoading(false);
+                  setLinkSent(true);
+              })
+              .catch((error) => {
+                  setLoading(false);
+                  setErrorMessage("link sent.");
+              });
+      }
   };
+    const updateFormValue = ({ updateType, value }) => {
+        setErrorMessage("");
+        setUserObj({ ...userObj, [updateType]: value });
+    };
 
-  const onSubmitHandler = (values) => {
-    forgotPassword(values);
-  };
+    return (
+        <div className="min-h-screen bg-base-200 flex items-center">
+            <div className="card mx-auto w-full max-w-5xl  shadow-xl">
+                <div className="grid  md:grid-cols-2 grid-cols-1  bg-base-100 rounded-xl">
+                    <div className="">
+                        <LandingIntro />
+                    </div>
+                    <div className="py-24 px-10">
+                        <h2 className="text-2xl font-semibold mb-2 text-center">
+                            Forgot Password
+                        </h2>
 
-  return (
-    <section className="bg-ct-blue-600 min-h-screen grid place-items-center">
-      <div className="w-full">
-        <h1 className="text-4xl xl:text-6xl text-center font-[600] text-ct-yellow-600 mb-7">
-          Forgot Password
-        </h1>
-        <FormProvider {...methods}>
-          <form
-            onSubmit={handleSubmit(onSubmitHandler)}
-            className="max-w-md w-full mx-auto overflow-hidden shadow-lg bg-ct-dark-200 rounded-2xl p-8 space-y-5"
-          >
-            <FormInput label="Email Address" name="email" type="email" />
-            <LoadingButton loading={store.requestLoading} textColor="text-ct-blue-600">
-              Send Reset Code
-            </LoadingButton>
-          </form>
-        </FormProvider>
-      </div>
-    </section>
-  );
-};
+                        {linkSent ? (
+                            <>
+                                <div className="text-center mt-8">
+                                    <CheckCircleIcon className="inline-block w-32 text-success" />
+                                </div>
+                                <p className="my-4 text-xl font-bold text-center">
+                                    Link Sent
+                                </p>
+                                <p className="mt-4 mb-8 font-semibold text-center">
+                                    Check your email to reset password
+                                </p>
+                                <div className="text-center mt-4">
+                                <Link to={`/reset-password`}>Reset Password</Link>
 
-export default ForgotPasswordPage;
+                                </div>
+                            </>
+                        ) : 
+                            <>
+                                <p className="my-8 font-semibold text-center">
+                                    We will send a password reset link to your email.
+                                </p>
+                                <form onSubmit={(e) => submitForm(e)}>
+                                    <div className="mb-4">
+                                        <InputText
+                                            type="emailId"
+                                            defaultValue={userObj.emailId}
+                                            updateType="emailId"
+                                            containerStyle="mt-4"
+                                            labelTitle="Email Id"
+                                            updateFormValue={updateFormValue}
+                                        />
+                                    </div>
+                                    <ErrorText styleClass="mt-12">
+                                        {errorMessage}
+                                    </ErrorText>
+                                    <button
+                                        type="submit"
+                                        className={
+                                            "btn mt-2 w-full btn-primary" +
+                                            (loading ? " loading" : "")
+                                        }
+                                    >
+                                        Send Reset Link
+                                    </button>
+                                    <div className="text-center mt-4">
+                                        Don't have an account yet?{" "}
+                                        <Link to="/register">
+                                            <button className="  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+                                                Register
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </form>
+                            </>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default ForgotPassword;
