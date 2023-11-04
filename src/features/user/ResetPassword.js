@@ -15,7 +15,7 @@ function ResetPassword() {
   useEffect(() => {
     
     if (!isValidToken) {
-      setErrorMessage('Invalid or expired token');
+      setErrorMessage('Invalid or expired token number');
       return;
     }
     fetch(`https://localhost:7079/api/Account/Reset-password?resetToken=${resetToken}`)
