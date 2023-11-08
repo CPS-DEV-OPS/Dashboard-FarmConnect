@@ -341,10 +341,27 @@ function ResetPassword() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
+<<<<<<< HEAD
     const handleResetPassword = () => {
         if (password !== confirmPassword) {
             setErrorMessage('Passwords do not match');
             return;
+=======
+  
+
+  useEffect(() => {
+    
+    if (!isValidToken) {
+      setErrorMessage('Invalid or expired token number');
+      return;
+    }
+    fetch(`https://localhost:7079/api/Account/Reset-password?resetToken=${resetToken}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setIsValidToken(true);
+        } else {
+          setIsValidToken(false);
+>>>>>>> 554f25b9139eff34041e0bc4e031059ac0b9c236
         }
 
         // Make a POST request to your backend API to reset the password
