@@ -5,7 +5,10 @@ import { themeChange } from 'theme-change'
 import checkAuth from './app/auth';
 import initializeApp from './app/init';
 import Additional from './features/user/additional';
+//import ResetPassword from './features/user/ResetPassword';
 import ResetPassword from './features/user/ResetPassword';
+
+
 
 // Importing pages
 const Layout = lazy(() => import('./containers/Layout'))
@@ -13,6 +16,10 @@ const Login = lazy(() => import('./pages/Login'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const Register = lazy(() => import('./pages/Register'))
 const Documentation = lazy(() => import('./pages/Documentation'))
+
+
+
+
 
 
 // Initializing different libraries
@@ -37,7 +44,18 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element= {<ResetPassword />}/>
+          {/* <Route exact path="/reset-password">
+          <ResetPassword resetToken={resetToken} /> */}
+          {/* <Route path="/reset-password" element={<ResetPassword />} /> */}
+          
+          {/* <Route path="/reset-password/:resetToken" element={<ResetPassword />} /> */}
+          <Route path="/reset-password" element={<ResetPassword />} />
+
+
+          
+
+
+          {/* <Route path="/reset-password" element= {<ResetPassword />}/> */}
           <Route path="/register" element={<Register />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/additional" element={<Additional />} />
