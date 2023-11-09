@@ -97,7 +97,7 @@ function Register() {
         <div>
         <input
           type="password"
-          placeholder="confirmPassword"
+          placeholder="confirmPassword."
           value={registerObj.confirmPassword}
           onChange={(e) =>setRegisterObj({ ...registerObj, confirmPassword: e.target.value })}
         />
