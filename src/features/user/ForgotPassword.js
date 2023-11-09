@@ -46,7 +46,7 @@ function ForgotPassword() {
               })
               .catch((error) => {
                   setLoading(false);
-                  setErrorMessage("link sent.");
+                  setErrorMessage("link sent");
               });
       }
   };
