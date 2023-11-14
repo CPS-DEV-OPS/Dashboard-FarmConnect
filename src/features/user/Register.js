@@ -23,7 +23,7 @@ function Register() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('https://farmconnectbackend.azurewebsites.net/Auth/Register', {
+      const response = await fetch('https://localhost:7079/Auth/Register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

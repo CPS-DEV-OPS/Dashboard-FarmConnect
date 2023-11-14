@@ -41,8 +41,13 @@ function Login() {
       setErrorMessage("Invalid email domain. Please use an email address from Gmail, Yahoo, or Outlook.");
     } else {
       setLoading(true);
+      // try {
+      //   const response = await axios.post("https://farmconnectbackend.azurewebsites.net/Auth/Login", {
+      //     password: loginObj.password,
+      //     email: loginObj.email,
+      //   });
       try {
-        const response = await axios.post("https://farmconnectbackend.azurewebsites.net/Auth/Login", {
+        const response = await axios.post("https://localhost:7079/Auth/Login", {
           password: loginObj.password,
           email: loginObj.email,
         });
