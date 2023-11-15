@@ -160,14 +160,15 @@ function AnimalProduct() {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-4">Farmer Dashboard</h1>
-
+  
+      {/* Add New Animal Product form */}
       <div>
         <h2 className="text-xl font-semibold mb-2">Add Animal Product</h2>
         <div className="mb-4">
           <input
             type="text"
             name="Name"
-            placeholder="Product Name"
+            placeholder="Name"
             value={newAnimalProduct.Name}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded-lg"
@@ -215,49 +216,60 @@ function AnimalProduct() {
             onClick={handleAddAnimalProduct}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
           >
-            Add Animal Productp
+            Add Animal Product
           </button>
         </div>
       </div>
-
-      <div className="mb-6 grid grid-cols-3 gap-2">
-        {animalProducts.map((animalProduct) => (
-          <div key={animalProduct.id} className="border p-4">
-            {animalProduct.imageUrl && (
-              <div className="mt-2">
-                <div style={{ maxWidth: '200px', maxHeight: '200px', overflow: 'hidden' }}>
-                  <img
-                    src={animalProduct.imageUrl}
-                    alt={animalProduct.animalProductName}
-                    className="max-w-full h-auto"
-                  />
-                </div>
-                <h2 className="text-lg font-semibold">{animalProduct.animalProductName}</h2>
-                <p>Animal-Product Name: {animalProduct.animalProductName}</p>
-                <p>Quantity: {animalProduct.quantity}</p>
-                <p>Price: {animalProduct.price}</p>
-                <p>Description: {animalProduct.description}</p>
-                <div>
+  
+      {/* Display Animal Products in a table */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold mb-2">Animal Products List</h2>
+        <table className="border-collapse border w-full">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border p-2">Image</th>
+              <th className="border p-2">Product Name</th>
+              <th className="border p-2">Quantity</th>
+              <th className="border p-2">Price</th>
+              <th className="border p-2">Description</th>
+              <th className="border p-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {animalProducts.map((animalProduct) => (
+              <tr key={animalProduct.id} className="border">
+                <td className="border p-2">
+                  {animalProduct.imageUrl && (
+                    <img
+                      src={animalProduct.imageUrl}
+                      alt={animalProduct.name}
+                      className="max-w-full h-auto"
+                      style={{ maxWidth: '50px', maxHeight: '50px' }}
+                    />
+                  )}
+                </td>
+                <td className="border p-2">{animalProduct.name}</td>
+                <td className="border p-2">{animalProduct.quantity}</td>
+                <td className="border p-2">{animalProduct.price}</td>
+                <td className="border p-2">{animalProduct.description}</td>
+                <td className="border p-2">
                   <button
-                    // You can add an edit button here if needed
                     onClick={() => handleEditAnimalProduct(animalProduct)}
-                   
                     className="text-blue-500 hover:underline"
                   >
                     Edit
                   </button>
                   <button
-                    // You can add a delete button here if needed
                     onClick={() => handleDeleteAnimalProduct(animalProduct.id)}
                     className="ml-2 text-red-500 hover:underline"
                   >
                     Delete
                   </button>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

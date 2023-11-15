@@ -172,7 +172,8 @@ function Animal() {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-4">Farmer Dashboard</h1>
-
+  
+      {/* Add New Animal form */}
       <div>
         <h2 className="text-xl font-semibold mb-2">Add New Animal</h2>
         <div className="mb-4">
@@ -261,48 +262,62 @@ function Animal() {
           </button>
         </div>
       </div>
-
-      <div className="mb-6 grid grid-cols-3 gap-2">
-        {animals.map((animal) => (
-          <div key={animal.id} className="border p-4">
-            {animal.imageUrl && (
-              <div className="mt-2">
-                <div style={{ maxWidth: '200px', maxHeight: '200px', overflow: 'hidden' }}>
-                  <img
-                    src={animal.imageUrl}
-                    alt={animal.AnimalName}
-                    className="max-w-full h-auto"
-                  />
-                </div>
-                <h2 className="text-lg font-semibold">{animal.AnimalName}</h2>
-                <p>Animal Name: {animal.animalName}</p>
-                <p>Age: {animal.age}</p>
-                <p>Vaccination: {animal.vaccination}</p>
-                <p>Offspring: {animal.offspring}</p>
-                <p>Breed: {animal.breed}</p>
-                <p>Price: {animal.price}</p>
-                <p>Weight: {animal.weight}</p>
-                <div>
+  
+      {/* Display Animals in a table */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold mb-2">Animals List</h2>
+        <table className="border-collapse border w-full">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border p-2">Image</th>
+              <th className="border p-2">Animal Name</th>
+              <th className="border p-2">Age</th>
+              <th className="border p-2">Vaccination</th>
+              <th className="border p-2">Offspring</th>
+              <th className="border p-2">Breed</th>
+              <th className="border p-2">Price</th>
+              <th className="border p-2">Weight</th>
+              <th className="border p-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {animals.map((animal) => (
+              <tr key={animal.id} className="border">
+                <td className="border p-2">
+                  {animal.imageUrl && (
+                    <img
+                      src={animal.imageUrl}
+                      alt={animal.AnimalName}
+                      className="max-w-full h-auto"
+                      style={{ maxWidth: '50px', maxHeight: '50px' }}
+                    />
+                  )}
+                </td>
+                <td className="border p-2">{animal.animalName}</td>
+                <td className="border p-2">{animal.age}</td>
+                <td className="border p-2">{animal.vaccination}</td>
+                <td className="border p-2">{animal.offspring}</td>
+                <td className="border p-2">{animal.breed}</td>
+                <td className="border p-2">{animal.price}</td>
+                <td className="border p-2">{animal.weight}</td>
+                <td className="border p-2">
                   <button
-                    // You can add an edit button here if needed
                     onClick={() => handleEditAnimal(animal)}
-                   
                     className="text-blue-500 hover:underline"
                   >
                     Edit
                   </button>
                   <button
-                    // You can add a delete button here if needed
                     onClick={() => handleDeleteAnimal(animal.id)}
                     className="ml-2 text-red-500 hover:underline"
                   >
                     Delete
                   </button>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

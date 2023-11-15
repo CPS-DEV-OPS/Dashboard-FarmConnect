@@ -160,7 +160,8 @@ function Crop() {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-4">Farmer Dashboard</h1>
-
+  
+      {/* Add New Crop form */}
       <div>
         <h2 className="text-xl font-semibold mb-2">Add New Crop</h2>
         <div className="mb-4">
@@ -219,49 +220,60 @@ function Crop() {
           </button>
         </div>
       </div>
-
-      <div className="mb-6 grid grid-cols-3 gap-2">
-        {crops.map((crop) => (
-          <div key={crop.id} className="border p-4">
-            {crop.imageUrl && (
-              <div className="mt-2">
-                <div style={{ maxWidth: '200px', maxHeight: '200px', overflow: 'hidden' }}>
-                  <img
-                    src={crop.imageUrl}
-                    alt={crop.cropName}
-                    className="max-w-full h-auto"
-                  />
-                </div>
-                <h2 className="text-lg font-semibold">{crop.cropName}</h2>
-                <p>Crop Name: {crop.cropName}</p>
-                <p>Quantity: {crop.quantity}</p>
-                <p>Price: {crop.price}</p>
-                <p>Description: {crop.description}</p>
-                <div>
+  
+      {/* Display Crops in a table */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold mb-2">Crops List</h2>
+        <table className="border-collapse border w-full">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border p-2">Image</th>
+              <th className="border p-2">Crop Name</th>
+              <th className="border p-2">Quantity</th>
+              <th className="border p-2">Price</th>
+              <th className="border p-2">Description</th>
+              <th className="border p-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {crops.map((crop) => (
+              <tr key={crop.id} className="border">
+                <td className="border p-2">
+                  {crop.imageUrl && (
+                    <img
+                      src={crop.imageUrl}
+                      alt={crop.cropName}
+                      className="max-w-full h-auto"
+                      style={{ maxWidth: '50px', maxHeight: '50px' }}
+                    />
+                  )}
+                </td>
+                <td className="border p-2">{crop.cropName}</td>
+                <td className="border p-2">{crop.quantity}</td>
+                <td className="border p-2">{crop.price}</td>
+                <td className="border p-2">{crop.description}</td>
+                <td className="border p-2">
                   <button
-                    // You can add an edit button here if needed
                     onClick={() => handleEditCrop(crop)}
-                   
                     className="text-blue-500 hover:underline"
                   >
                     Edit
                   </button>
                   <button
-                    // You can add a delete button here if needed
                     onClick={() => handleDeleteCrop(crop.id)}
                     className="ml-2 text-red-500 hover:underline"
                   >
                     Delete
                   </button>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
-}
+                  }
 
 export default Crop;
 

@@ -89,16 +89,51 @@ function Additional() {
         setFormData({
           ...formData,
           [name]: value,
-          
         });
+      
+      
         setSelectedCounty(event.target.value);
       };
-    
-      const handleSubmit = (event) => {
+      const handleSubmit = async (event) => {
         event.preventDefault();
-        // You can handle form submission here, e.g., send data to an API or process it in your component.
-        console.log('Form submitted with data:', formData);
+        try {
+          // const registrationId = localStorage.getItem('registrationId'); // Retrieve the Registration ID from localStorage
+          const registrationId = localStorage.getItem('registrationId');
+      
+          const response = await fetch(`https://localhost:7079/Auth/UpdateUser/${registrationId}`, {
+            method: 'PUT',
+            headers: {
+              
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              registrationId: registrationId, // Assuming registrationid corresponds to registrationid
+              dob: selectedDate,
+              phoneNumber: formData.phoneNumber,
+              // dob: formData.dob,
+              county: selectedCounty,
+              gpsLocation: formData.location,
+              // Add other fields as needed
+            }),
+          });
+      
+          if (response.ok) {
+            // Handle success
+          } else {
+            // Handle error
+          }
+        } catch (error) {
+          // Handle network errors or other issues
+        }
       };
+      
+      
+    
+      // const handleSubmit = (event) => {
+      //   event.preventDefault();
+      //   // You can handle form submission here, e.g., send data to an API or process it in your component.
+      //   console.log('Form submitted with data:', formData);
+      // };
     
   const [selectedOption, setSelectedOption] = useState('Farmer');
   const [showForm, setShowForm] = useState(false);
