@@ -53,6 +53,7 @@ function Login() {
         });
         if (response.status === 200) { // Check the response status code
           const data = response.data; 
+          
         // localStorage.setItem("token", data.token);
         setLoading(false);
         navigate('/app/dashboard');

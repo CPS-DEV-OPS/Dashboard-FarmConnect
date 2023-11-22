@@ -58,6 +58,8 @@ function Register() {
         const registrationResponse = await response.json();
         const { registrationId } = registrationResponse;
 
+        
+
         // Store the registrationId in localStorage
         localStorage.setItem("registrationId", registrationId);
         setLoading(false);
